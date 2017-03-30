@@ -6,21 +6,19 @@ var path = require('path');
 
 //this is the users_controller.js file
 router.get('/new', function(req,res) {
-	//console.log("NNNNNEEEEEWWWWW")
 	res.sendFile(path.join(__dirname + '/../public/register.html'));
 });
 
 router.get('/signOut', function(req,res) {
   req.session.destroy(function(err) {
   	res.send("logged out")
-     //res.redirect('/')
   })
 });
 
 
 // login
 router.post('/login', function(req, res) {
-	//console.log("llllooogggiiinnn"+ JSON.stringify(req.body));
+
   models.User.findOne({
     where: {email: req.body.email}
   }).then(function(user) {
@@ -52,7 +50,7 @@ router.post('/login', function(req, res) {
 
 // register a user
 router.post('/create', function(req,res) {
-	//console.log("Create userSS")
+	
 	models.User.findAll({
     where: {email: req.body.email}
   }).then(function(users) {
